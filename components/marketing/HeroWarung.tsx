@@ -28,7 +28,7 @@ const HERO_OUTLINES = [
   {
     src: assetPath("/sorgtime/outline_franchise.webp"),
     label: "Informasi franchise dan lokasi Sorgtime",
-    href: "#surat-kabar",
+    href: assetPath("/kemitraan"),
     style: { left: "77.78%", top: "50.25%", width: "15.39%", height: "49.75%" },
     foreground: true,
   },
@@ -37,19 +37,28 @@ const HERO_OUTLINES = [
 type HeroOutline = (typeof HERO_OUTLINES)[number];
 
 function OutlineLink({ outline }: { outline: HeroOutline }) {
+  const [pressed, setPressed] = useState(false);
+
   return (
     <a
       href={outline.href}
       aria-label={outline.label}
+      data-hero-outline={outline.label}
       style={outline.style}
+      onPointerDown={() => setPressed(true)}
+      onPointerUp={() => window.setTimeout(() => setPressed(false), 180)}
+      onPointerCancel={() => setPressed(false)}
+      onBlur={() => setPressed(false)}
       className="group pointer-events-auto absolute cursor-pointer focus-visible:outline-none"
     >
       <Image
         src={outline.src}
         alt=""
         fill
-        sizes="31vw"
-        className="object-fill opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+        sizes="(min-width: 1024px) 31vw, 55vw"
+        className={`object-fill transition-opacity duration-200 group-hover:opacity-100 group-focus:opacity-100 ${
+          pressed ? "opacity-100" : "opacity-0"
+        }`}
       />
     </a>
   );
@@ -61,6 +70,8 @@ export function HeroWarung() {
   const heroRef = useRef<HTMLElement>(null);
   const backgroundStageRef = useRef<HTMLDivElement>(null);
   const tableStageRef = useRef<HTMLDivElement>(null);
+  const mobileBackOutlinesRef = useRef<HTMLDivElement>(null);
+  const mobileFrontOutlinesRef = useRef<HTMLDivElement>(null);
   const baristaRef = useRef<HTMLDivElement>(null);
   const mobileBaristaRef = useRef<HTMLDivElement>(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
@@ -118,12 +129,14 @@ export function HeroWarung() {
     if (baristaRef.current) baristaRef.current.style.transform = transform;
     if (mobileBaristaRef.current) mobileBaristaRef.current.style.transform = transform;
     const centeredSceneTranslate = `calc(-50% + ${sceneCurrentX.current}px) -50%`;
-    if (backgroundStageRef.current) {
-      backgroundStageRef.current.style.translate = centeredSceneTranslate;
-    }
-    if (tableStageRef.current) {
-      tableStageRef.current.style.translate = centeredSceneTranslate;
-    }
+    [
+      backgroundStageRef.current,
+      tableStageRef.current,
+      mobileBackOutlinesRef.current,
+      mobileFrontOutlinesRef.current,
+    ].forEach((layer) => {
+      if (layer) layer.style.translate = centeredSceneTranslate;
+    });
   };
 
   const animateCharacters = () => {
@@ -170,16 +183,17 @@ export function HeroWarung() {
 
       if (touchGesture.current.axis === "vertical") return;
 
+      if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
+
       const stageWidth = backgroundStageRef.current?.getBoundingClientRect().width ?? bounds.width;
-      const sceneLimit = Math.min(
-        Math.max(0, (stageWidth - bounds.width) / 2),
-        bounds.width * 0.6,
-      );
+      const sceneLimit = Math.max(0, (stageWidth - bounds.width) / 2);
       const nextSceneX = Math.max(
         -sceneLimit,
         Math.min(
           sceneLimit,
-          touchGesture.current.originSceneX + deltaX,
+          touchGesture.current.originSceneX + deltaX * 1.6,
         ),
       );
       const nextBaristaX = Math.max(
@@ -226,6 +240,9 @@ export function HeroWarung() {
 
   const finishTouchGesture = (event: PointerEvent<HTMLElement>) => {
     if (event.pointerType !== "touch") return;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
     touchGesture.current.active = false;
     touchGesture.current.axis = null;
     if (baristaIdleTimer.current) clearTimeout(baristaIdleTimer.current);
@@ -320,6 +337,15 @@ export function HeroWarung() {
         ))}
       </div>
 
+      <div
+        ref={mobileBackOutlinesRef}
+        className="pointer-events-none absolute left-1/2 top-1/2 z-[15] h-[max(100%,56.315vw)] w-[max(100%,177.574svh)] -translate-x-1/2 -translate-y-1/2 lg:hidden"
+      >
+        {HERO_OUTLINES.filter((outline) => !("foreground" in outline)).map((outline) => (
+          <OutlineLink key={outline.src} outline={outline} />
+        ))}
+      </div>
+
       <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
         <div className="absolute bottom-[23%] left-1/2 z-[14] w-[24%] min-w-[250px] max-w-[380px] -translate-x-1/2">
           <div className="hero-rise" style={{ animationDelay: "360ms" }}>
@@ -345,6 +371,15 @@ export function HeroWarung() {
       </div>
 
       <div className="pointer-events-none absolute left-1/2 top-1/2 z-30 hidden h-[max(100%,56.315vw)] w-[max(100%,177.574vh)] -translate-x-1/2 -translate-y-1/2 lg:block">
+        {HERO_OUTLINES.filter((outline) => "foreground" in outline).map((outline) => (
+          <OutlineLink key={outline.src} outline={outline} />
+        ))}
+      </div>
+
+      <div
+        ref={mobileFrontOutlinesRef}
+        className="pointer-events-none absolute left-1/2 top-1/2 z-30 h-[max(100%,56.315vw)] w-[max(100%,177.574svh)] -translate-x-1/2 -translate-y-1/2 lg:hidden"
+      >
         {HERO_OUTLINES.filter((outline) => "foreground" in outline).map((outline) => (
           <OutlineLink key={outline.src} outline={outline} />
         ))}
