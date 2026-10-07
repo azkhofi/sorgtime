@@ -117,11 +117,12 @@ export function HeroWarung() {
     const transform = `translate3d(${current.x}px, ${current.y}px, 0) rotate(${turn}deg)`;
     if (baristaRef.current) baristaRef.current.style.transform = transform;
     if (mobileBaristaRef.current) mobileBaristaRef.current.style.transform = transform;
+    const centeredSceneTranslate = `calc(-50% + ${sceneCurrentX.current}px) -50%`;
     if (backgroundStageRef.current) {
-      backgroundStageRef.current.style.translate = `${sceneCurrentX.current}px 0`;
+      backgroundStageRef.current.style.translate = centeredSceneTranslate;
     }
     if (tableStageRef.current) {
-      tableStageRef.current.style.translate = `${sceneCurrentX.current}px 0`;
+      tableStageRef.current.style.translate = centeredSceneTranslate;
     }
   };
 
