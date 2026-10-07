@@ -245,11 +245,11 @@ export function HeroWarung() {
         resetBaristaPose();
       }}
       aria-label="Selamat datang di Sorgtime"
-      className="relative h-[100svh] min-h-[640px] touch-pan-y overflow-hidden bg-[#d8d0c4] lg:h-screen lg:min-h-[680px]"
+      className="relative h-[100svh] min-h-[540px] touch-pan-y overflow-hidden bg-[#d8d0c4] sm:min-h-[600px] lg:h-screen lg:min-h-[680px]"
     >
       <div
         ref={backgroundStageRef}
-        className={`absolute left-1/2 top-1/2 h-[max(100%,70.66vw)] w-[max(100%,141.523vh)] -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-[1400ms] ease-out lg:hidden ${
+        className={`absolute left-1/2 top-1/2 h-[max(100%,56.315vw)] w-[max(100%,177.574svh)] -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-[1400ms] ease-out lg:hidden ${
           ready ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
         }`}
       >
@@ -282,7 +282,7 @@ export function HeroWarung() {
 
       <div
         ref={tableStageRef}
-        className={`pointer-events-none absolute left-1/2 top-1/2 z-[24] h-[max(100%,70.66vw)] w-[max(100%,141.523vh)] -translate-x-1/2 -translate-y-1/2 transition-opacity delay-150 duration-1000 ease-out lg:hidden ${
+        className={`pointer-events-none absolute left-1/2 top-1/2 z-[24] h-[max(100%,56.315vw)] w-[max(100%,177.574svh)] -translate-x-1/2 -translate-y-1/2 transition-opacity delay-150 duration-1000 ease-out lg:hidden ${
           ready ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -349,7 +349,7 @@ export function HeroWarung() {
         ))}
       </div>
 
-      <div className="hero-rise pointer-events-none absolute bottom-[16%] left-1/2 z-20 w-[min(72vw,300px)] -translate-x-1/2 lg:hidden">
+      <div className="hero-rise pointer-events-none absolute bottom-[27%] left-1/2 z-20 w-[clamp(250px,76vw,310px)] -translate-x-1/2 sm:bottom-[23%] lg:hidden">
         <div ref={mobileBaristaRef} className="hero-character-motion relative aspect-[1884/2511] w-full">
           {(Object.entries(BARISTA_POSES) as [BaristaPose, string][]).map(([pose, src]) => (
             <Image
