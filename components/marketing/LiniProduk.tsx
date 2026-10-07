@@ -116,7 +116,7 @@ export function LiniProduk() {
                 role="tab"
                 onClick={() => selectCategory(c)}
                 aria-selected={active === c.key}
-                className={`min-w-[132px] flex-1 snap-start cursor-pointer whitespace-nowrap border border-black p-3 pb-2 pt-4 font-hand text-xs uppercase text-black transition-colors duration-300 lg:min-w-0 lg:text-sm ${
+                className={`min-w-[172px] flex-1 snap-start cursor-pointer whitespace-nowrap border border-black px-4 pb-2 pt-4 font-hand text-[11px] uppercase text-black transition-colors duration-300 lg:min-w-0 lg:px-3 lg:text-sm ${
                   active === c.key ? "bg-fire-bush" : "bg-transparent hover:bg-janna/45"
                 }`}
               >

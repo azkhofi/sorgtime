@@ -49,18 +49,6 @@ export function CeritaCarousel() {
         </h3>
       </div>
 
-      {/* Swipe hint */}
-      <div className={`mt-2 shrink-0 text-center text-xs uppercase transition-colors duration-500 lg:mt-3 ${activeStory === null ? "text-brown-rust" : "text-janna"}`}>
-        <p className="text-2xl">
-          {"<<"}
-          <span className="font-hand text-base">
-            {" "}
-            Geser untuk lihat lainnya
-          </span>
-          {">>"}
-        </p>
-      </div>
-
       {/* Horizontal scrollable gallery */}
       <div
         id="galeri"

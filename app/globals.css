@@ -72,11 +72,21 @@ a {
 }
 
 [data-reveal="left"] {
-  transform: translate3d(-46px, 0, 0);
+  transform: translate3d(0, 24px, 0);
 }
 
 [data-reveal="right"] {
-  transform: translate3d(46px, 0, 0);
+  transform: translate3d(0, 24px, 0);
+}
+
+@media (min-width: 1024px) {
+  [data-reveal="left"] {
+    transform: translate3d(-46px, 0, 0);
+  }
+
+  [data-reveal="right"] {
+    transform: translate3d(46px, 0, 0);
+  }
 }
 
 [data-reveal].is-visible {
