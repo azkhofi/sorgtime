@@ -33,7 +33,7 @@ export function SuratKabar() {
     >
       <div className="relative h-[calc(100svh-57px)] w-[1512px] snap-start lg:h-[calc(100vh-57px)] lg:w-full">
         <Image
-          src={assetPath("/sorgtime/suratkabar.png")}
+          src={assetPath("/sorgtime/suratkabar.webp")}
           alt="Background Sorgtime"
           width={1512}
           height={775}

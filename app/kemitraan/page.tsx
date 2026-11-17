@@ -121,7 +121,7 @@ export default function KemitraanPage() {
           <div className="hero-pop relative mx-auto mt-6 h-[350px] w-full">
             <div className="absolute left-1/2 top-1/2 h-[285px] w-[285px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black bg-janna shadow-[9px_9px_0_#f1644b]" />
             <Image
-              src={assetPath("/sorgtime/infofranchise/assets/kemitraan-hero-v2.png")}
+              src={assetPath("/sorgtime/infofranchise/assets/kemitraan-hero-v2.webp")}
               alt="Cup minuman Sorgtime"
               fill
               priority
@@ -158,7 +158,7 @@ export default function KemitraanPage() {
             <div className="absolute left-1/2 top-1/2 h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-black bg-janna shadow-[13px_13px_0_#f1644b]" />
             <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-black/20 bg-gold/35" />
             <Image
-              src={assetPath("/sorgtime/infofranchise/assets/kemitraan-hero-v2.png")}
+              src={assetPath("/sorgtime/infofranchise/assets/kemitraan-hero-v2.webp")}
               alt="Cup minuman Sorgtime"
               fill
               priority
@@ -295,7 +295,7 @@ export default function KemitraanPage() {
           <div className="grid gap-7 lg:grid-cols-2">
             <article className="relative border-[3px] border-black bg-janna p-5 shadow-[10px_10px_0_#211e1e] md:p-8" data-reveal="left">
               <span className="absolute right-4 top-4 z-10 rotate-3 border border-black bg-gold px-3 py-1 font-hand text-xs uppercase">Ringkas & lincah</span>
-              <div className="relative h-[330px] sm:h-[430px]"><Image src={assetPath("/sorgtime/infofranchise/assets/booth.png")} alt="Paket booth Sorgtime" fill sizes="(min-width: 1024px) 48vw, 90vw" className="object-contain" /></div>
+              <div className="relative h-[330px] sm:h-[430px]"><Image src={assetPath("/sorgtime/infofranchise/assets/booth.webp")} alt="Paket booth Sorgtime" fill sizes="(min-width: 1024px) 48vw, 90vw" className="object-contain" /></div>
               <div className="border-t-2 border-black pt-6">
                 <p className="font-mono text-xs uppercase tracking-widest">Paket Booth</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-3"><h3 className="font-hand text-5xl uppercase md:text-6xl">Rp6 juta</h3><span className="text-xs uppercase">Investasi awal</span></div>
@@ -303,7 +303,7 @@ export default function KemitraanPage() {
             </article>
             <article className="relative border-[3px] border-black bg-white p-5 shadow-[10px_10px_0_#211e1e] md:p-8" data-reveal="right">
               <span className="absolute right-4 top-4 z-10 -rotate-3 border border-black bg-conifer px-3 py-1 font-hand text-xs uppercase text-janna">Mobilitas tinggi</span>
-              <div className="relative h-[330px] sm:h-[430px]"><Image src={assetPath("/sorgtime/infofranchise/assets/paket-electric-trike.png")} alt="Paket sepeda listrik Sorgtime" fill sizes="(min-width: 1024px) 48vw, 90vw" className="object-contain" /></div>
+              <div className="relative h-[330px] sm:h-[430px]"><Image src={assetPath("/sorgtime/infofranchise/assets/paket-electric-trike.webp")} alt="Paket sepeda listrik Sorgtime" fill sizes="(min-width: 1024px) 48vw, 90vw" className="object-contain" /></div>
               <div className="border-t-2 border-black pt-6">
                 <p className="font-mono text-xs uppercase tracking-widest">Paket Sepeda Listrik</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-3"><h3 className="font-hand text-5xl uppercase md:text-6xl">Rp25 juta</h3><span className="text-xs uppercase">Investasi awal</span></div>
@@ -345,7 +345,7 @@ export default function KemitraanPage() {
             {[
               { image: assetPath("/sorgtime/infofranchise/assets/legalitas-nib.jpg"), title: "Nomor Induk Berusaha", note: "NIB terbit melalui sistem OSS" },
               { image: assetPath("/sorgtime/infofranchise/assets/legalitas-halal.png"), title: "Sertifikat Halal", note: "Produk minuman Sorgtime tercantum pada sertifikat" },
-              { image: assetPath("/sorgtime/infofranchise/assets/legalitas-hki.png"), title: "Merek Terdaftar", note: "Perlindungan merek Sorgtime" },
+              { image: assetPath("/sorgtime/infofranchise/assets/legalitas-hki.webp"), title: "Merek Terdaftar", note: "Perlindungan merek Sorgtime" },
             ].map((item) => (
               <article key={item.title} className="border-2 border-black bg-white p-3 shadow-[7px_7px_0_#211e1e]" data-reveal>
                 <div className="relative aspect-[4/3] overflow-hidden border border-black bg-horizon"><Image src={item.image} alt={item.title} fill sizes="(min-width: 768px) 33vw, 90vw" className="object-contain p-3" /></div>

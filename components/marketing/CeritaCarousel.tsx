@@ -5,7 +5,7 @@ import { useRef, useState, type PointerEvent } from "react";
 import { assetPath } from "@/lib/asset-path";
 
 const STORIES = [
-  { src: assetPath("/sorgtime/sorgtim.png"), name: "Keluarga Sorgtime", background: "#2f4a26" },
+  { src: assetPath("/sorgtime/sorgtim.webp"), name: "Keluarga Sorgtime", background: "#2f4a26" },
   // { src: "/tuku/galeri/tetangga-2.webp", name: "Juru Parkir Karang Tengah" },
   // { src: "/tuku/galeri/tetangga-3.webp", name: "Ibu-ibu Tetangga BSD" },
   // { src: "/tuku/galeri/tetangga-4.webp", name: "Tetangga Kecil Cipete" },

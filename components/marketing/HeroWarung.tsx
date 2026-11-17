@@ -287,7 +287,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/bg_desktop.png")}
+          src={assetPath("/sorgtime/bg_desktop.webp")}
           alt="Suasana kedai Sorgtime"
           fill
           priority
@@ -302,7 +302,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/bg_desktop.png")}
+          src={assetPath("/sorgtime/bg_desktop.webp")}
           alt="Suasana kedai Sorgtime"
           fill
           priority
@@ -320,7 +320,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/table_desktop.png")}
+          src={assetPath("/sorgtime/table_desktop.webp")}
           alt="Meja bar Sorgtime"
           width={1449}
           height={574}
@@ -336,7 +336,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/table_desktop.png")}
+          src={assetPath("/sorgtime/table_desktop.webp")}
           alt="Meja bar Sorgtime"
           width={1449}
           height={574}

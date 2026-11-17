@@ -3,9 +3,9 @@ import type { CSSProperties } from "react";
 import { assetPath } from "@/lib/asset-path";
 
 const PRODUCTS = [
-  { img: assetPath("/sorgtime/vest.png"), name: "Sorgteam Vest", price: "Rp 250.000", buy: true },
-  { img: assetPath("/sorgtime/sorgmeal.png"), name: "Meal Replacement", price: "Rp 150.000", buy: true },
-  { img: assetPath("/sorgtime/tumbler.png"), name: "Sorgtime Tumbler", price: "Rp 230.000", buy: false },
+  { img: assetPath("/sorgtime/vest.webp"), name: "Sorgteam Vest", price: "Rp 250.000", buy: true },
+  { img: assetPath("/sorgtime/sorgmeal.webp"), name: "Meal Replacement", price: "Rp 150.000", buy: true },
+  { img: assetPath("/sorgtime/tumbler.webp"), name: "Sorgtime Tumbler", price: "Rp 230.000", buy: false },
   // { img: "/tuku/toserba/t-12.png", name: "Kaos Kaki #TetanggaTuku Kecil", price: "Rp 88.000", buy: true },
   // { img: "/tuku/toserba/t-11.png", name: "Kaus Kaki #TetanggaTuku Donat", price: "Rp 111.000", buy: true },
   // { img: "/tuku/toserba/t-10.png", name: "Pulpen Tetangga Tuku", price: "Rp 14.000", buy: true },
