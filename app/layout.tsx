@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://azkhofi.github.io/sorgtime/"),
+  metadataBase: new URL("https://sorgtime.com/"),
   title: "Sorgtime — Your Go To Gluten Free Cold Brew Coffee",
   description:
     "Cold brew kopi gluten free dari biji sorgum lokal. Rendah gula, bebas laktosa, ramah vegan, dan mendukung gaya hidup sehat.",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "Sorgtime — Your Go To Gluten Free Cold Brew Coffee",
     description:
       "Cold brew kopi gluten free dari biji sorgum lokal untuk gaya hidup sehat.",
-    url: "https://azkhofi.github.io/sorgtime/",
+    url: "https://sorgtime.com/",
     siteName: "Sorgtime",
     images: [{ url: "/sorgtime/coverweb.png", width: 1920, height: 1080 }],
     locale: "id_ID",
