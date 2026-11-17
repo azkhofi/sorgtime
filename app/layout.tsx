@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "Cold brew kopi gluten free dari biji sorgum lokal untuk gaya hidup sehat.",
     url: "https://sorgtime.com/",
     siteName: "Sorgtime",
-    images: [{ url: "/sorgtime/coverweb.png", width: 1920, height: 1080 }],
+    images: [{ url: "/coverweb.png", width: 1920, height: 1080 }],
     locale: "id_ID",
     type: "website",
   },
