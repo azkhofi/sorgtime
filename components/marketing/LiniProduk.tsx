@@ -1,14 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 import { assetPath } from "@/lib/asset-path";
+import { CRACK_PRODUCTS } from "@/lib/crack-products";
 
 type Product = {
   name: string;
   image: string;
   position?: string;
   fit?: "cover" | "contain";
+  slug?: string;
 };
 
 type Category = {
@@ -16,14 +19,6 @@ type Category = {
   label: string;
   products: Product[];
 };
-
-const WHATSAPP_PHONE = "6281259015626";
-
-function getWhatsAppUrl(productName: string, categoryKey?: string) {
-  const prefix = categoryKey === "crack" ? "C'rack - " : "";
-  const message = `Halo Sorgtime, saya ingin memesan ${prefix}${productName}.`;
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
-}
 
 const CATEGORIES: Category[] = [
   {
@@ -56,24 +51,13 @@ const CATEGORIES: Category[] = [
   {
     key: "crack",
     label: "C'rack",
-    products: [
-      { name: "Salt Bread Original", image: assetPath("/menucrackpng/saltbreadoriginal.webp"), position: "center", fit: "contain" },
-      { name: "Salt Bun Original", image: assetPath("/menucrackpng/saltbunoriginal.webp"), position: "center", fit: "contain" },
-      { name: "Garlic Cheese", image: assetPath("/menucrackpng/garliccheese.webp"), position: "center", fit: "contain" },
-      { name: "Cheese Sausage", image: assetPath("/menucrackpng/cheesesausage.webp"), position: "center", fit: "contain" },
-      { name: "Egg Mayo", image: assetPath("/menucrackpng/eggmayo.webp"), position: "center", fit: "contain" },
-      { name: "Monster Cookie", image: assetPath("/menucrackpng/monstercookie.webp"), position: "center", fit: "contain" },
-      { name: "OG Lotus", image: assetPath("/menucrackpng/oglotus.webp"), position: "center", fit: "contain" },
-      { name: "Red Velvet", image: assetPath("/menucrackpng/redvelvet.webp"), position: "center", fit: "contain" },
-      { name: "Matcha", image: assetPath("/menucrackpng/matcha.webp"), position: "center", fit: "contain" },
-      { name: "Choco Crunchy", image: assetPath("/menucrackpng/chococrunchy.webp"), position: "center", fit: "contain" },
-      { name: "Choco Mellow", image: assetPath("/menucrackpng/chocomellow.webp"), position: "center", fit: "contain" },
-      { name: "Ganache", image: assetPath("/menucrackpng/ganache.webp"), position: "center", fit: "contain" },
-      { name: "Biscoff Fudge Choco", image: assetPath("/menucrackpng/biscofffudgechoco.webp"), position: "center", fit: "contain" },
-      { name: "Salted Caramel Regal", image: assetPath("/menucrackpng/saltedcaramelregal.webp"), position: "center", fit: "contain" },
-      { name: "Tencha", image: assetPath("/menucrackpng/tencha.webp"), position: "center", fit: "contain" },
-      { name: "Blue Cloud Tencha", image: assetPath("/menucrackpng/bluecloudtencha.webp"), position: "center", fit: "contain" },
-    ],
+    products: CRACK_PRODUCTS.map((product) => ({
+      name: product.name,
+      image: assetPath(product.image),
+      position: "center",
+      fit: "contain" as const,
+      slug: product.slug,
+    })),
   },
 ];
 
@@ -103,16 +87,6 @@ export function LiniProduk() {
     setActive(category.key);
     setSelectedProduct(category.products[0]);
   };
-
-  useEffect(() => {
-    const handler = (event: Event) => {
-      const key = (event as CustomEvent<string>).detail;
-      const category = CATEGORIES.find((c) => c.key === key);
-      if (category) selectCategory(category);
-    };
-    window.addEventListener("sorgtime:select-category", handler);
-    return () => window.removeEventListener("sorgtime:select-category", handler);
-  });
 
   return (
     <section id="lini-produk" className="scroll-mt-[57px]">
@@ -158,17 +132,16 @@ export function LiniProduk() {
             )}
             <div className="absolute inset-0 bg-gradient-to-b from-janna/25 via-transparent to-black/35" />
             {active === "crack" ? (
-              <a
-                href={getWhatsAppUrl(selectedProduct.name, active)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={selectedProduct.slug ? `/crack#${selectedProduct.slug}` : "/crack"}
+                onClick={() => setSelectedProduct(selectedProduct)}
                 className="group absolute bottom-10 right-5 flex items-center gap-3 border-2 border-black bg-janna px-4 py-2.5 font-hand text-xl uppercase shadow-[5px_5px_0_#211e1e] transition-transform hover:-translate-y-1 lg:bottom-14 lg:right-14 lg:text-2xl"
               >
                 <span>{selectedProduct.name}</span>
                 <span className="flex items-center gap-1 border border-black bg-brand px-2 py-0.5 font-sans text-xs font-semibold uppercase text-white group-hover:bg-brand-dark">
-                  Pesan WA ↗
+                  Pesan ↗
                 </span>
-              </a>
+              </Link>
             ) : (
               <p className="absolute bottom-10 right-5 border border-black bg-janna px-5 pb-2 pt-3 font-hand text-xl uppercase shadow-[5px_5px_0_#211e1e] lg:bottom-14 lg:right-14 lg:text-2xl">
                 {selectedProduct.name}
@@ -178,7 +151,7 @@ export function LiniProduk() {
 
           <p className="absolute bottom-5 left-5 z-20 text-[9px] uppercase tracking-[0.15em] text-white drop-shadow lg:bottom-8 lg:left-16">
             {active === "crack"
-              ? "Klik menu untuk pemesanan via WhatsApp"
+              ? "Klik menu untuk buka book menu C'rack"
               : "Klik menu untuk melihat produk"}
           </p>
         </div>
@@ -216,11 +189,9 @@ export function LiniProduk() {
 
                 if (isCrack) {
                   return (
-                    <a
+                    <Link
                       key={p.name}
-                      href={getWhatsAppUrl(p.name, active)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={p.slug ? `/crack#${p.slug}` : "/crack"}
                       onClick={() => setSelectedProduct(p)}
                       onPointerEnter={(event) => {
                         if (event.pointerType !== "touch") setSelectedProduct(p);
@@ -246,7 +217,7 @@ export function LiniProduk() {
                       <span className="flex flex-1 items-center justify-between gap-2">
                         <span className="font-medium text-black">{p.name}</span>
                         <span className="flex items-center gap-1 font-mono text-[10px] text-brand">
-                          <span className="font-sans font-semibold uppercase">Pesan WA</span>
+                          <span className="font-sans font-semibold uppercase">Pesan</span>
                           <span
                             aria-hidden="true"
                             className="text-base transition-transform duration-300 group-hover:rotate-[-20deg]"
@@ -255,7 +226,7 @@ export function LiniProduk() {
                           </span>
                         </span>
                       </span>
-                    </a>
+                    </Link>
                   );
                 }
 
@@ -335,17 +306,15 @@ export function LiniProduk() {
           {active === "crack" ? (
             <div className="mt-8 hidden w-full flex-col items-center gap-3 text-center text-[11px] lg:flex">
               <p className="font-mono text-[10px] uppercase tracking-wider text-black/75">
-                Pemesanan C&apos;rack langsung via WhatsApp:
+                Atur jumlah &amp; checkout via WhatsApp di book menu:
               </p>
-              <a
-                href={getWhatsAppUrl(selectedProduct.name, active)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={selectedProduct.slug ? `/crack#${selectedProduct.slug}` : "/crack"}
                 className="inline-flex items-center gap-3 border-2 border-black bg-brand px-6 py-2.5 font-hand text-base uppercase text-white shadow-[4px_4px_0_#211e1e] transition-transform hover:-translate-y-0.5"
               >
-                <span>Pesan {selectedProduct.name} (+62 812-5901-5626)</span>
+                <span>Buka {selectedProduct.name} di C&apos;rack</span>
                 <span aria-hidden="true">↗</span>
-              </a>
+              </Link>
             </div>
           ) : (
             <div className="mt-14 hidden w-full flex-col gap-[19px] text-center text-[10px] lg:flex">
@@ -370,17 +339,15 @@ export function LiniProduk() {
       {active === "crack" ? (
         <div className="flex w-full flex-col items-center justify-center gap-2 bg-conifer px-5 py-3.5 text-center text-[11px] text-white lg:hidden">
           <p className="text-[10px] uppercase tracking-wider text-janna/80">
-            Pemesanan C&apos;rack langsung via WhatsApp:
+            Atur jumlah &amp; checkout via WhatsApp di book menu:
           </p>
-          <a
-            href={getWhatsAppUrl(selectedProduct.name, active)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={selectedProduct.slug ? `/crack#${selectedProduct.slug}` : "/crack"}
             className="inline-flex items-center gap-2 border-2 border-black bg-fire-bush px-5 py-2 font-hand text-sm uppercase text-black shadow-[3px_3px_0_#211e1e]"
           >
-            <span>Pesan {selectedProduct.name} (+62 812-5901-5626)</span>
+            <span>Buka {selectedProduct.name} di C&apos;rack</span>
             <span aria-hidden="true">↗</span>
-          </a>
+          </Link>
         </div>
       ) : (
         <div className="flex w-full flex-col items-center justify-center gap-2 bg-tapa px-5 py-[14px] text-center text-[10px] text-white lg:hidden">

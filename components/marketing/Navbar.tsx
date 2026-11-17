@@ -9,6 +9,7 @@ import { assetPath } from "@/lib/asset-path";
 const NAV_LINKS = [
   { href: "/#tentang", label: "Tentang", sectionId: "tentang" },
   { href: "/#lini-produk", label: "Lini Produk", sectionId: "lini-produk" },
+  { href: "/crack", label: "C'rack" },
   { href: "/#sorgteam", label: "Sorgteam", sectionId: "sorgteam" },
   { href: "/#toserba", label: "Toserba", sectionId: "toserba" },
   { href: "/kemitraan", label: "Kemitraan" },

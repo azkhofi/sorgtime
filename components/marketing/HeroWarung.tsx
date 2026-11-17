@@ -27,9 +27,8 @@ const HERO_OUTLINES = [
   },
   {
     src: assetPath("/sorgtime/outline_crack.png"),
-    label: "Lihat menu C'rack — roti dan kue Sorgtime",
-    href: "#lini-produk",
-    event: "crack",
+    label: "Buka book menu C'rack — roti dan kue Sorgtime",
+    href: "/crack",
     style: { left: "11.7%", top: "42.5%", width: "22.4%", height: "29.4%" },
     foreground: true,
   },
@@ -57,13 +56,6 @@ function OutlineLink({ outline }: { outline: HeroOutline }) {
       onPointerUp={() => window.setTimeout(() => setPressed(false), 180)}
       onPointerCancel={() => setPressed(false)}
       onBlur={() => setPressed(false)}
-      onClick={() => {
-        if ("event" in outline) {
-          window.dispatchEvent(
-            new CustomEvent("sorgtime:select-category", { detail: outline.event }),
-          );
-        }
-      }}
       className="group pointer-events-auto absolute cursor-pointer focus-visible:outline-none"
     >
       <Image
