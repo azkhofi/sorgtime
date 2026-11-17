@@ -26,6 +26,14 @@ const HERO_OUTLINES = [
     style: { left: "34.78%", top: "15.93%", width: "30.5%", height: "19.61%" },
   },
   {
+    src: assetPath("/sorgtime/outline_crack.png"),
+    label: "Lihat menu C'rack — roti dan kue Sorgtime",
+    href: "#lini-produk",
+    event: "crack",
+    style: { left: "11.7%", top: "42.5%", width: "22.4%", height: "29.4%" },
+    foreground: true,
+  },
+  {
     src: assetPath("/sorgtime/outline_franchise.webp"),
     label: "Informasi franchise dan lokasi Sorgtime",
     href: assetPath("/kemitraan"),
@@ -49,6 +57,13 @@ function OutlineLink({ outline }: { outline: HeroOutline }) {
       onPointerUp={() => window.setTimeout(() => setPressed(false), 180)}
       onPointerCancel={() => setPressed(false)}
       onBlur={() => setPressed(false)}
+      onClick={() => {
+        if ("event" in outline) {
+          window.dispatchEvent(
+            new CustomEvent("sorgtime:select-category", { detail: outline.event }),
+          );
+        }
+      }}
       className="group pointer-events-auto absolute cursor-pointer focus-visible:outline-none"
     >
       <Image
@@ -272,7 +287,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/bg_desktop.webp")}
+          src={assetPath("/sorgtime/bg_desktop.png")}
           alt="Suasana kedai Sorgtime"
           fill
           priority
@@ -287,7 +302,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/bg_desktop.webp")}
+          src={assetPath("/sorgtime/bg_desktop.png")}
           alt="Suasana kedai Sorgtime"
           fill
           priority
@@ -305,7 +320,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/table_desktop.webp")}
+          src={assetPath("/sorgtime/table_desktop.png")}
           alt="Meja bar Sorgtime"
           width={1449}
           height={574}
@@ -321,7 +336,7 @@ export function HeroWarung() {
         }`}
       >
         <Image
-          src={assetPath("/sorgtime/table_desktop.webp")}
+          src={assetPath("/sorgtime/table_desktop.png")}
           alt="Meja bar Sorgtime"
           width={1449}
           height={574}
